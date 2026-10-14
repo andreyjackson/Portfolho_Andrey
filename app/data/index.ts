@@ -1,0 +1,11 @@
+// Ponto único de importação do conteúdo: `import { perfil, projetos } from '~/data'`.
+export * from './contato'
+export * from './experiencia'
+export * from './formacao'
+export * from './idiomas'
+export * from './perfil'
+export * from './projetos'
+export * from './secoes'
+export * from './site'
+export * from './skills'
+export type * from './tipos'

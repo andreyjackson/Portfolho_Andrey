@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* Paleta do portifoliov1.pen: cinzas azulados frios sob o roxo/rosa da marca. */
+@theme static {
+  --color-ink-50: #f5f5f7;
+  --color-ink-100: #e4e4eb;
+  --color-ink-200: #c8c8d4;
+  --color-ink-300: #a9a9bb;
+  --color-ink-400: #9494a8;
+  --color-ink-500: #5c5c72;
+  --color-ink-600: #3a3a4e;
+  --color-ink-700: #222233;
+  --color-ink-800: #1a1a25;
+  --color-ink-900: #12121a;
+  --color-ink-950: #0a0a0f;
+
+  --color-section: #0e0e16;
+
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+:root {
+  --ui-container: 86rem;
+}
+
+/* O design só existe no escuro: os tokens semânticos apontam direto para os valores do .pen. */
+.dark {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-secondary: var(--ui-color-secondary-500);
+  --ui-info: var(--ui-color-info-500);
+  --ui-success: var(--ui-color-success-500);
+
+  --ui-bg: var(--ui-color-neutral-950);
+  --ui-bg-muted: var(--ui-color-neutral-900);
+  --ui-bg-elevated: var(--ui-color-neutral-800);
+  --ui-bg-accented: var(--ui-color-neutral-700);
+
+  --ui-text-highlighted: var(--ui-color-neutral-50);
+  --ui-text: var(--ui-color-neutral-200);
+  --ui-text-toned: var(--ui-color-neutral-300);
+  --ui-text-muted: var(--ui-color-neutral-400);
+  /* Mais claro que ink-500 (#5c5c72, contraste 2,4–3:1) para passar no mínimo de 4,5:1 da WCAG AA em todos os fundos. */
+  --ui-text-dimmed: #84849c;
+
+  --ui-border: #1e1e2e;
+  --ui-border-muted: #1e1e2e;
+  --ui-border-accented: var(--ui-color-neutral-700);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--ui-header-height);
+}
+
+/* Quem pede menos movimento no sistema não recebe rolagem suave nem transições. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
