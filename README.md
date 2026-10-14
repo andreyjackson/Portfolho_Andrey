@@ -36,3 +36,4 @@ Exemplos:
 
 Importe o repositório na Vercel e mantenha **Root Directory = `.`** (raiz do repositório). O framework Nuxt e o comando de build são detectados automaticamente.
 # Portfolho_Andrey
+# Portfolho_Andrey
