@@ -38,6 +38,8 @@ export interface Perfil {
   nomeCompleto: string
   /** Etiqueta acima do nome, ex.: "Full-Stack Developer". */
   cargo: Texto
+  /** Frase de valor do topo da página (H1). */
+  titulo: Texto
   localizacao: Texto
   disponibilidade: Texto
   /** Parágrafo abaixo do nome. */
@@ -90,6 +92,15 @@ export interface Projeto {
   repositorio?: string
   /** Link do projeto publicado. */
   demo?: string
+  /** Projeto em destaque: ocupa a largura toda e mostra o estudo de caso. */
+  caso?: EstudoDeCaso
+}
+
+/** `resultado` só deve ser preenchido com um resultado real e verificável. */
+export interface EstudoDeCaso {
+  problema: Texto
+  solucao: Texto
+  resultado?: Texto
 }
 
 export interface Experiencia {

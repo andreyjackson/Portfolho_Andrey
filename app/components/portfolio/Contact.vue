@@ -21,7 +21,7 @@ const externo = (url: string) => url.startsWith('http')
     <template #top>
       <div
         aria-hidden="true"
-        class="pointer-events-none absolute top-5 left-1/2 -z-10 h-[250px] w-[500px] max-w-full -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,--alpha(var(--ui-secondary)/12%),transparent)]"
+        class="pointer-events-none absolute top-5 left-1/2 -z-10 h-[250px] w-[500px] max-w-full -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,--alpha(var(--ui-success)/12%),transparent)]"
       />
     </template>
 

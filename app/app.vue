@@ -4,6 +4,12 @@ import { en, pt_br } from '@nuxt/ui/locale'
 import { cabecalho, hero, idiomas, rodape, secoes, seo } from '~/data'
 
 const { atual, idioma, t } = useIdioma()
+const modoDeCor = useColorMode()
+const escuro = computed(() => modoDeCor.value === 'dark')
+
+function alternarTema() {
+  modoDeCor.preference = escuro.value ? 'light' : 'dark'
+}
 
 // Textos internos do Nuxt UI (ex.: "Abrir menu" no celular) no idioma da página.
 const localeUi = computed(() => idioma.value === 'en' ? en : pt_br)
@@ -31,7 +37,7 @@ useSeoMeta({
   <UApp :locale="localeUi">
     <a
       href="#conteudo"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink-950"
     >
       {{ t(cabecalho.pularConteudo) }}
     </a>
@@ -40,7 +46,7 @@ useSeoMeta({
          `v-text` evita que o Nuxt UI use "AJ" como nome do link. -->
     <UHeader :title="t(cabecalho.rotuloLogo)" to="#sobre">
       <template #title>
-        <span v-text="cabecalho.logo" />
+        <span class="logo-aj" v-text="cabecalho.logo" />
       </template>
 
       <UNavigationMenu :items="menu" variant="link" color="neutral" />
@@ -67,6 +73,19 @@ useSeoMeta({
             {{ opcao.rotulo }}
           </NuxtLink>
         </nav>
+        <ClientOnly>
+          <UButton
+            :icon="escuro ? 'i-lucide-sun' : 'i-lucide-moon'"
+            :aria-label="t(escuro ? cabecalho.tema.paraClaro : cabecalho.tema.paraEscuro)"
+            :title="t(escuro ? cabecalho.tema.paraClaro : cabecalho.tema.paraEscuro)"
+            color="neutral"
+            variant="ghost"
+            @click="alternarTema"
+          />
+          <template #fallback>
+            <span class="size-8" aria-hidden="true" />
+          </template>
+        </ClientOnly>
         <GradientButton :to="cabecalho.botao.destino" :label="t(cabecalho.botao.rotulo)" />
       </template>
 

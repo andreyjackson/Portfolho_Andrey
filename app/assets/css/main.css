@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Paleta do portifoliov1.pen: cinzas azulados frios sob o roxo/rosa da marca. */
+/* Paleta do portifoliov1.pen: cinzas azulados frios sob o verde/rosa da marca. */
 @theme static {
   --color-ink-50: #f5f5f7;
   --color-ink-100: #e4e4eb;
@@ -15,7 +15,21 @@
   --color-ink-900: #12121a;
   --color-ink-950: #0a0a0f;
 
-  --color-section: #0e0e16;
+  /* Fundo das seções destacadas: muda com o tema (ver --app-section abaixo). */
+  --color-section: var(--app-section);
+
+  /* Verde terminal da marca: o tom 400 (#4af688) é o mesmo do monograma ASCII. */
+  --color-matrix-50: #effff4;
+  --color-matrix-100: #d9ffe6;
+  --color-matrix-200: #b5fccf;
+  --color-matrix-300: #7ff9ac;
+  --color-matrix-400: #4af688;
+  --color-matrix-500: #1fe06b;
+  --color-matrix-600: #12b855;
+  --color-matrix-700: #138f47;
+  --color-matrix-800: #15703c;
+  --color-matrix-900: #135c33;
+  --color-matrix-950: #04341b;
 
   --font-sans: "Inter", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
@@ -24,11 +38,45 @@
 
 :root {
   --ui-container: 86rem;
+  --app-section: #f3f3f7;
+
+  /* Tema claro: o verde 400 da marca não tem contraste sobre branco, então o texto usa o tom 800 (6:1). */
+  --ui-primary: var(--ui-color-primary-800);
+  --ui-text-dimmed: var(--ui-color-neutral-500);
 }
 
-/* O design só existe no escuro: os tokens semânticos apontam direto para os valores do .pen. */
+.logo-aj {
+  display: inline-block;
+  color: var(--ui-primary);
+  transform-style: preserve-3d;
+  text-shadow:
+    1px 0 #27d978,
+    2px 0 #18b85e,
+    3px 0 #108c48,
+    4px 0 #0a6336,
+    0 0 12px rgb(74 246 136 / 35%);
+}
+
+/* O logo só gira quando o cursor ou o foco estão no link. */
+a:hover > .logo-aj,
+a:focus-visible > .logo-aj {
+  animation: logo-aj-giro 5s linear infinite;
+}
+
+@keyframes logo-aj-giro {
+  from {
+    transform: perspective(180px) rotateY(0deg);
+  }
+
+  to {
+    transform: perspective(180px) rotateY(360deg);
+  }
+}
+
+/* Tema escuro: os tokens semânticos apontam direto para os valores do .pen. */
 .dark {
-  --ui-primary: var(--ui-color-primary-500);
+  --app-section: #0e0e16;
+  --ui-primary: var(--ui-color-primary-400);
   --ui-secondary: var(--ui-color-secondary-500);
   --ui-info: var(--ui-color-info-500);
   --ui-success: var(--ui-color-success-500);
@@ -68,4 +116,23 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* Entrada suave das seções ao rolar (ver Secao.vue). */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.revelar-visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* No tema claro o logo perde o brilho neon e fica só com a extrusão discreta. */
+:root:not(.dark) .logo-aj {
+  text-shadow:
+    1px 0 #1b8a4c,
+    2px 0 #166f3d;
 }

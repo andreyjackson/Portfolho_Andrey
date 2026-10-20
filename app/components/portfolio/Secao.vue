@@ -11,6 +11,23 @@ const props = defineProps<{
 
 const { t } = useIdioma()
 
+// Revelar ao rolar: só esconde o que ainda está abaixo da tela, então o conteúdo nunca pisca no carregamento
+// nem some sem JavaScript. Quem pede menos movimento no sistema vê tudo desde o início.
+onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const alvo = document.getElementById(props.secao.id)?.firstElementChild
+  if (!alvo || alvo.getBoundingClientRect().top < window.innerHeight) return
+
+  alvo.classList.add('revelar')
+  const observador = new IntersectionObserver(([entrada]) => {
+    if (!entrada?.isIntersecting) return
+    alvo.classList.add('revelar-visivel')
+    observador.disconnect()
+  }, { threshold: 0.08 })
+  observador.observe(alvo)
+  onBeforeUnmount(() => observador.disconnect())
+})
+
 const ui = computed(() => ({
   ...props.ui,
   headline: [classesDaCor[props.secao.cor].texto, props.ui?.headline].filter(Boolean).join(' '),

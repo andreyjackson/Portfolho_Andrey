@@ -20,6 +20,11 @@ export const cabecalho = {
   /** Primeiro link da página; só aparece ao navegar pelo teclado (Tab). */
   pularConteudo: { pt: 'Pular para o conteúdo', en: 'Skip to content' },
   botao: { rotulo: { pt: 'Fale Comigo', en: 'Contact Me' }, destino: '#contato' },
+  /** Rótulo do botão de tema: descreve a ação, não o estado atual. */
+  tema: {
+    paraClaro: { pt: 'Mudar para o tema claro', en: 'Switch to light theme' },
+    paraEscuro: { pt: 'Mudar para o tema escuro', en: 'Switch to dark theme' },
+  },
 }
 
 export const hero = {
@@ -35,6 +40,9 @@ export const hero = {
 export const novaAba = { pt: 'abre em nova aba', en: 'opens in a new tab' }
 
 export const textosProjetos = {
+  problema: { pt: 'Problema', en: 'Problem' },
+  solucao: { pt: 'Solução', en: 'Solution' },
+  resultado: { pt: 'Resultado', en: 'Result' },
   verProjeto: { pt: 'Ver projeto', en: 'View project' },
   verCodigo: { pt: 'Ver código', en: 'View code' },
   /** Seguido do nome do projeto. */
